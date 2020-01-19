@@ -1,13 +1,15 @@
 package com.example.tipcalculator;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
 
     private EditText billAmountEditText;
     private TextView tipTextView;
@@ -17,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Button percentUpButton;
     private Button percentDownButton;
+
+    private SharedPreferences savedValues;
+    private String billAmountString = "";
+    private float tipPercent = .15f;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +38,12 @@ public class MainActivity extends AppCompatActivity {
         percentUpButton = (Button) findViewById(R.id.percentUpButton);
         percentDownButton = (Button) findViewById(R.id.percentDownButton);
 
+
+
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        return false;
     }
 }
