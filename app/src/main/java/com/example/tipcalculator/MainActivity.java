@@ -3,6 +3,7 @@ package com.example.tipcalculator;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         tipTextView = (TextView)findViewById(R.id.tipTextView);
         totalTextView = (TextView)findViewById(R.id.totalTextView);
 
+        billAmountEditText.setOnEditorActionListener(this);
+
         percentUpButton = (Button) findViewById(R.id.percentUpButton);
         percentDownButton = (Button) findViewById(R.id.percentDownButton);
 
@@ -44,6 +47,12 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+        if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_UNSPECIFIED)
+        {
+            tipTextView.setText("$10.00");
+            totalTextView.setText("$110.00");
+        }
         return false;
     }
 }
